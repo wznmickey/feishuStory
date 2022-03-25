@@ -12,35 +12,34 @@
   <title>JIxLark一起写“书”挑战赛</title>
 </head>
 
-<body class="text-center" style="left: 25%;position: relative;">
+<body class="text-center">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
 
   <script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-min.js"></script>
 
   <header></header>
-  <main style="width: 50%;height: 50%;position: absolute;">
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">JIxLark 一起写“书”挑战赛</span>
-      </div>
-    </nav>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">小组名称</span>
-      <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
+  <main class="position-absolute top-50 start-50 translate-middle">
+    <h2 class="text-middle text-primary mb-3">JIxLark 一起写“书”挑战赛</h2>
+
+    <div class="input-group mb-3 border-primary">
+      <span class="input-group-text text-primary border-primary" id="basic-addon1">小组名称</span>
+      <input type="text" id="name" class="form-control border-primary" aria-describedby="basic-addon1">
     </div>
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="no">顺序</label>
-      <select class="form-select" id="no">
+    <div class="input-group mb-3 border-primary">
+      <label class="input-group-text text-primary border-primary" for="no">顺序</label>
+      <select class="form-select border-primary  " id="no">
         <option value=1>1</option>
         <option value=2>2</option>
         <option value=3>3</option>
       </select>
-      <button class="btn btn-outline-secondary" type="button" id="button-addon1" onclick=" get()">获取关键词</button>
+      <button class="btn btn-outline-primary border-primary" type="button" id="button-addon1"
+        onclick=" get()">获取关键词</button>
     </div>
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">关键词</span>
-      <input class="form-control" id="word" type="text" value="" aria-label="readonly input example" readonly>
+      <span class="input-group-text text-primary border-primary" id="basic-addon1">关键词</span>
+      <input class="form-control text-primary border-primary" id="word" type="text" value=""
+        aria-label="readonly input example" readonly>
     </div>
   </main>
   <footer></footer>
