@@ -45,7 +45,9 @@
   </main>
   <footer></footer>
   <script>
-    const MAX = 5;
+    const MAX1 = 44;
+    const MAX2 = 38;
+    const MAX3 = 43;
     AV.init({
       appId: " WOSMQcWaDN9TNHtd2OyCPU0b-9Nh9j0Va", appKey: "OMWIizbrJsQouoLiv8jGmyvf",
       serverURL: "https://feishustory.wznmickey.com"
@@ -71,25 +73,33 @@
       }
       else {
         document.getElementById("word").value = word[0].get("word");
+        document.getElementById("button-addon1").disabled = false;
       }
     }
 
     function get() {
+      document.getElementById("button-addon1").disabled = true;
       query = new AV.Query("groupWord");
       query.equalTo('groupName', document.getElementById("name").value);
       query.equalTo('no', parseInt((
         document.getElementById("no").value), 10));
-      query.find().then((word) => { handleResult(word) }//(word)
+      query.find().then((word) => { handleResult(word); }//(word)
       );
     }
     async function getWord() {
-      var x = parseInt(Math.random() * (MAX) + 1, 10);
+      var lun = parseInt(document.getElementById("no").value, 10);
+      var x = 5;
+      if (lun == 1) { x = parseInt(Math.random() * (MAX1) + 1, 10); }
+      if (lun == 2) { x = parseInt(Math.random() * (MAX2) + 1, 10); }
+      if (lun == 3) { x = parseInt(Math.random() * (MAX3) + 1, 10); }
       const query = new AV.Query("allWords");
       query.equalTo("no", x)
+      query.equalTo("type", lun);
       return await query.find().then((word) => {
         // console.log(word);
         const newWord = word[0].get("word");
         document.getElementById("word").value = newWord;
+        document.getElementById("button-addon1").disabled = false;
         // console.log(newWord);
         return (newWord);
       }, (error) => {
