@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <!-- 必须的 meta 标签 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 的 CSS 文件 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+  <title>JIxLark一起写“书”挑战赛</title>
+</head>
+
+<body class="text-center" style="left: 25%;position: relative;">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-min.js"></script>
+
+  <header></header>
+  <main style="width: 50%;height: 50%;position: absolute;">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">JIxLark 一起写“书”挑战赛</span>
+      </div>
+    </nav>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">小组名称</span>
+      <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="no">顺序</label>
+      <select class="form-select" id="no">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+      </select>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon1" onclick=" get()">获取关键词</button>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">关键词</span>
+      <input class="form-control" id="word" type="text" value="" aria-label="readonly input example" readonly>
+    </div>
+  </main>
+  <footer></footer>
+  <script>
+    const MAX = 5;
+    AV.init({
+      appId: " WOSMQcWaDN9TNHtd2OyCPU0b-9Nh9j0Va", appKey: "OMWIizbrJsQouoLiv8jGmyvf",
+      serverURL: "https://feishustory.wznmickey.com"
+    }); async function handleResult(word) {
+      // console.log(word); 
+      if
+        (word.length == 0) {
+        getWord().then((new_Word) => {
+          console.log(new_Word);
+          if (new_Word != "error") {
+            // console.log(new_Word); const
+            GroupWord = AV.Object.extend('groupWord'); const groupWord = new GroupWord(); groupWord.set('groupName',
+              document.getElementById("name").value); groupWord.set('no', (parseInt(document.getElementById("no").value, 10)));
+            groupWord.set('word', new_Word); groupWord.save().then(() => {
+            }, (error) => {
+              alert("出错，请联系工作人员");
+            });
+          }
+          else {
+            alert("出错，请联系工作人员");
+          }
+        });
+      }
+      else {
+        document.getElementById("word").value = word[0].get("word");
+      }
+    }
+
+    function get() {
+      query = new AV.Query("groupWord");
+      query.equalTo('groupName', document.getElementById("name").value);
+      query.equalTo('no', parseInt((
+        document.getElementById("no").value), 10));
+      query.find().then((word) => { handleResult(word) }//(word)
+      );
+    }
+    async function getWord() {
+      var x = parseInt(Math.random() * (MAX) + 1, 10);
+      const query = new AV.Query("allWords");
+      query.equalTo("no", x)
+      return await query.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        document.getElementById("word").value = newWord;
+        // console.log(newWord);
+        return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+        return ("error");
+      });
+
+    }
+  </script>
+</body>
