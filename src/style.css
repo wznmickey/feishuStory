@@ -1,0 +1,56 @@
+#basic-addon1 ,#word{
+    background-color: #F8F8F8;
+}
+
+.whole{
+    background-color: #135394;
+    padding: 16px 12px;    
+    padding-bottom: 2px;
+    border: 2px;
+    border-radius: 15px;
+    
+}
+
+#button-addon1 :hover{
+ background-color: #135394;
+}
+
+.group {
+    padding: 14px 8px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 120%;
+    color: white;
+}
+
+.group #title-bottom{
+    font-size: 20%;
+    margin-top: 10px;
+}
+
+.choice-body{
+    padding: 8px;
+    background-color: #F8F8F8;
+}
+
+#input-1{
+margin: 2px 8px;
+    /* padding: 8px 16px; */
+}
+
+#input-2{
+    margin: 2px 0px;
+    margin-top: 20px;
+}
+
+#button-addon1{
+    margin: 0px 0px; 
+}
+
+#no{
+padding: 4px 6px;
+}
+
+#word{
+    text-align: center;
+}
