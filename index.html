@@ -88,25 +88,62 @@
     }
     async function getWord() {
       var lun = parseInt(document.getElementById("no").value, 10);
-      var x = 5;
-      if (lun == 1) { x = parseInt(Math.random() * (MAX1) + 1, 10); }
-      if (lun == 2) { x = parseInt(Math.random() * (MAX2) + 1, 10); }
-      if (lun == 3) { x = parseInt(Math.random() * (MAX3) + 1, 10); }
-      const query = new AV.Query("allWords");
-      query.equalTo("no", x)
-      query.equalTo("type", lun);
-      return await query.find().then((word) => {
+      x1 = parseInt(Math.random() * (MAX1) + 1, 10);
+      x2 = parseInt(Math.random() * (MAX2) + 1, 10);
+      x3 = parseInt(Math.random() * (MAX3) + 1, 10);
+      str = "";
+      var count = 0;
+      const query1 = new AV.Query("allWords");
+      query1.equalTo("no", x1)
+      query1.equalTo("type", 1);
+      await query1.find().then((word) => {
         // console.log(word);
         const newWord = word[0].get("word");
-        document.getElementById("word").value = newWord;
-        document.getElementById("button-addon1").disabled = false;
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
         // console.log(newWord);
-        return (newWord);
+        // return (newWord);
       }, (error) => {
         alert("出错，请联系工作人员");
-        return ("error");
       });
+      const query2 = new AV.Query("allWords");
+      query2.equalTo("no", x2)
+      query2.equalTo("type", 2);
+      await query2.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
+        // console.log(newWord);
+        // return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+      });
+      const query3 = new AV.Query("allWords");
+      query3.equalTo("no", x3)
+      query3.equalTo("type", 3);
+      await query3.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
+        // console.log(newWord);
+        // return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+      });
+      while (count <= 2) {
 
+      }
+      document.getElementById("word").value = str;
+      document.getElementById("button-addon1").disabled = false;
+      return str;
     }
   </script>
 </body>
