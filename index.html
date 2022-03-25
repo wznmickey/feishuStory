@@ -88,6 +88,82 @@
           alert("出错，请联系工作人员");
         }
       });
+          }
+        });
+      }
+      else {
+        document.getElementById("word").value = word[0].get("word");
+        document.getElementById("button-addon1").disabled = false;
+      }
+    }
+
+    function get() {
+      document.getElementById("button-addon1").disabled = true;
+      query = new AV.Query("groupWord");
+      query.equalTo('groupName', document.getElementById("name").value);
+      query.equalTo('no', parseInt((
+        document.getElementById("no").value), 10));
+      query.find().then((word) => { handleResult(word); }//(word)
+      );
+    }
+    async function getWord() {
+      var lun = parseInt(document.getElementById("no").value, 10);
+      x1 = parseInt(Math.random() * (MAX1) + 1, 10);
+      x2 = parseInt(Math.random() * (MAX2) + 1, 10);
+      x3 = parseInt(Math.random() * (MAX3) + 1, 10);
+      str = "";
+      var count = 0;
+      const query1 = new AV.Query("allWords");
+      query1.equalTo("no", x1)
+      query1.equalTo("type", 1);
+      await query1.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
+        // console.log(newWord);
+        // return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+      });
+      const query2 = new AV.Query("allWords");
+      query2.equalTo("no", x2)
+      query2.equalTo("type", 2);
+      await query2.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
+        // console.log(newWord);
+        // return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+      });
+      const query3 = new AV.Query("allWords");
+      query3.equalTo("no", x3)
+      query3.equalTo("type", 3);
+      await query3.find().then((word) => {
+        // console.log(word);
+        const newWord = word[0].get("word");
+        str = str + word[0].get("word") + " ";
+        count = count + 1;
+        // document.getElementById("word").value = newWord;
+        // document.getElementById("button-addon1").disabled = false;
+        // console.log(newWord);
+        // return (newWord);
+      }, (error) => {
+        alert("出错，请联系工作人员");
+      });
+      while (count <= 2) {
+
+      }
+      document.getElementById("word").value = str;
+      document.getElementById("button-addon1").disabled = false;
+      return str;
     }
     else {
       document.getElementById("word").value = word[0].get("word");
